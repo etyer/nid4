@@ -1,109 +1,95 @@
 body {
-    background-color: black; /* Karanlık arka plan */
-    color: white; /* Yazı rengi beyaz */
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    overflow: hidden; /* Taşan içeriği gizle */
+    overflow: hidden;
 }
 
 #container {
     text-align: center;
-    position: relative; /* Diğer öğeler için konum ayarı */
 }
 
 h1 {
-    font-size: 40px;
-    transition: opacity 1s ease-in-out;
+    font-size: 3em;
+    margin-bottom: 20px;
 }
 
-#alert-box {
-    background-color: rgba(128, 128, 128, 0.7); /* Gri arka plan */
-    border-radius: 50px; /* Elips çerçeve */
-    padding: 10px 20px; /* İçerik boşluğu */
-    margin: 20px 0; /* Üst ve alt boşluk */
-}
-
-#instruction {
-    font-size: 20px;
-    transition: opacity 1s ease-in-out;
-}
-
-#message-bubble {
-    background: linear-gradient(135deg, #d1c4e9, #f8bbd0); /* Mor ve pembe geçişli arka plan */
-    border-radius: 20px;
-    padding: 15px;
-    width: fit-content;
-    margin: 20px auto;
-    position: relative;
-    display: none; /* Başlangıçta gizli */
-}
-
-.dots {
-    font-size: 30px;
-    animation: blink 1s step-start infinite; /* Üç nokta animasyonu */
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-}
-
-#poem-text {
-    margin-top: 10px;
-    font-size: 18px;
-    white-space: pre-wrap; /* Şiirin biçimini korumak için */
-}
-
-#enter-key {
-    font-size: 100px;
-    margin-top: 20px;
-    color: white;
-    cursor: pointer;
-    display: none; /* Başlangıçta gizli */
-    transform: scale(1); /* İlk boyut */
-    transition: transform 0.2s ease; /* Geçiş animasyonu */
-}
-
-#enter-instruction {
-    margin-top: 10px;
-    font-size: 30px;
-    opacity: 0; /* Başlangıçta gizli */
-    transition: opacity 0.5s ease-in-out;
+.alert {
+    background-color: gray;
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 1em;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .hidden {
-    display: none; /* Gizli öğeleri gizle */
+    display: none;
 }
 
-#final-message {
+.balloon {
+    background: linear-gradient(to right, purple, pink);
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    margin: 20px 0;
+    display: inline-block;
+}
+
+.dots {
+    font-size: 2em;
+    animation: typing 1s steps(5, end) infinite;
+}
+
+.poem {
+    font-size: 1.5em;
     margin-top: 20px;
-    font-size: 30px;
-    opacity: 0; /* Başlangıçta gizli */
-    transition: opacity 0.5s ease-in-out;
 }
 
-.flower {
-    position: absolute;
-    opacity: 0; /* Başlangıçta gizli */
-    font-size: 30px;
-    pointer-events: none; /* Tıklama olaylarını engelle */
+.enter-button {
+    font-size: 5em;
+    margin-top: 20px;
+    animation: bounce 1s infinite;
 }
 
-.animate {
-    animation: float 2s ease-in forwards; /* Yüzen animasyon */
+.enter-alert {
+    font-size: 1.2em;
+    margin-top: 10px;
 }
 
-@keyframes float {
-    0% {
-        transform: translateY(0);
-        opacity: 1; /* İlk görünür */
-    }
-    100% {
-        transform: translateY(-200px); /* Yukarı doğru kaydır */
-        opacity: 0; /* Kaybolma */
-    }
+.final-text {
+    font-size: 2em;
+    margin-top: 20px;
+    animation: heartBeat 1s infinite;
+}
+
+.double-click {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 1.5em; }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
 }
