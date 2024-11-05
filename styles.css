@@ -21,10 +21,10 @@ h1 {
 
 .alert {
     background-color: gray;
-    border-radius: 50px;
+    border-radius: 25px;
     padding: 10px 20px;
     display: inline-block;
-    font-size: 1em;
+    font-size: 1.5em;
     animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -54,6 +54,7 @@ h1 {
 .enter-button {
     font-size: 5em;
     margin-top: 20px;
+    cursor: pointer;
     animation: bounce 1s infinite;
 }
 
