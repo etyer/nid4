@@ -6,7 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     overflow: hidden; /* Taşan içeriği gizle */
 }
 
@@ -84,4 +84,26 @@ h1 {
     font-size: 30px;
     opacity: 0; /* Başlangıçta gizli */
     transition: opacity 0.5s ease-in-out;
+}
+
+.flower {
+    position: absolute;
+    opacity: 0; /* Başlangıçta gizli */
+    font-size: 30px;
+    pointer-events: none; /* Tıklama olaylarını engelle */
+}
+
+.animate {
+    animation: float 2s ease-in forwards; /* Yüzen animasyon */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+        opacity: 1; /* İlk görünür */
+    }
+    100% {
+        transform: translateY(-200px); /* Yukarı doğru kaydır */
+        opacity: 0; /* Kaybolma */
+    }
 }
