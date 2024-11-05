@@ -1,4 +1,4 @@
- document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const alertMessage = document.getElementById("alert");
     const messageContainer = document.getElementById("message-container");
     const enterKey = document.getElementById("enter-key");
@@ -64,14 +64,15 @@ aydınlıkta yüreğimin.`;
     function sendMessage() {
         const finalText = document.createElement("div");
         finalText.className = "final-text";
-        finalText.innerText = "Beyaz kalp <3";
+        finalText.innerText = "🤍"; // Beyaz kalp
         finalMessage.appendChild(finalText);
-        finalMessage.classList.remove("hidden");
 
         const doubleClickMessage = document.createElement("div");
         doubleClickMessage.className = "double-click";
-        doubleClickMessage.innerText = "Çift tıkla!!";
+        doubleClickMessage.innerText = "Çift tıklayın";
         finalMessage.appendChild(doubleClickMessage);
+
+        finalMessage.classList.remove("hidden");
 
         doubleClickMessage.addEventListener("dblclick", () => {
             displayFlowers();
