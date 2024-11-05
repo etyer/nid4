@@ -1,111 +1,96 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const alertMessage = document.getElementById("alert");
-    const messageContainer = document.getElementById("message-container");
-    const enterKey = document.getElementById("enter-key");
-    const finalMessage = document.getElementById("final-message");
-    const poemText = document.getElementById("poem-text");
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
 
-    // İlk uyarı için çift tıklama
-    alertMessage.addEventListener("dblclick", () => {
-        alertMessage.classList.add("hidden");
-        messageContainer.classList.remove("hidden");
-        showTypingDots();
-    });
+#container {
+    text-align: center;
+}
 
-    // Şiiri yazan fonksiyon
-    function showTypingDots() {
-        let dots = document.querySelector(".dots");
-        let interval = setInterval(() => {
-            dots.innerText += ".";
-            if (dots.innerText.length > 3) {
-                dots.innerText = "";
-            }
-        }, 500);
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
 
-        setTimeout(() => {
-            clearInterval(interval);
-            displayPoem();
-        }, 3000);
-    }
+.alert {
+    background-color: gray;
+    border-radius: 25px;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 1.5em;
+    animation: fadeIn 0.5s ease-in-out;
+}
 
-    function displayPoem() {
-        const poem = `
-Sessiz gözyaşın ve gülümsemen gülüm,
-hıçkırıkların ve kahkahan gülüm.
+.hidden {
+    display: none;
+}
 
-Pırıl pırıl beyaz dişli kahkahanın tekrarı.
+.balloon {
+    background: linear-gradient(to right, purple, pink);
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    margin: 20px 0;
+    display: inline-block;
+}
 
-Güz sabahı üzüm bağında
-sıra sıra, büklüm büklüm kütüklerin tekrarı
-kütüklerde salkımların
-salkımlarda tanelerin
-tanelerde aydınlığın,
-aydınlıkta yüreğimin.`;
+.dots {
+    font-size: 2em;
+    animation: typing 1s steps(5, end) infinite;
+}
 
-        let i = 0;
-        let interval = setInterval(() => {
-            if (i < poem.length) {
-                poemText.innerText += poem[i++];
-            } else {
-                clearInterval(interval);
-                showEnterKey();
-            }
-        }, 100); // 0.1 saniye aralıkla yaz
-    }
+.poem {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
 
-    function showEnterKey() {
-        enterKey.classList.remove("hidden");
-        enterKey.addEventListener("click", () => {
-            enterKey.classList.add("hidden");
-            sendMessage();
-        });
-    }
+.enter-button {
+    font-size: 5em;
+    margin-top: 20px;
+    cursor: pointer;
+    animation: bounce 1s infinite;
+}
 
-    function sendMessage() {
-        const finalText = document.createElement("div");
-        finalText.className = "final-text";
-        finalText.innerText = "🤍"; // Beyaz kalp
-        finalMessage.appendChild(finalText);
+.enter-alert {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
 
-        const doubleClickMessage = document.createElement("div");
-        doubleClickMessage.className = "double-click";
-        doubleClickMessage.innerText = "Çift tıklayın";
-        finalMessage.appendChild(doubleClickMessage);
+.final-text {
+    font-size: 2em;
+    margin-top: 20px;
+    animation: heartBeat 1s infinite;
+}
 
-        finalMessage.classList.remove("hidden");
+.double-click {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
 
-        doubleClickMessage.addEventListener("dblclick", () => {
-            displayFlowers();
-        });
-    }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-    function displayFlowers() {
-        // Ekranı papatyalar ve kalpler ile doldur
-        for (let i = 0; i < 50; i++) {
-            const flower = document.createElement("div");
-            flower.innerHTML = "🌼";
-            flower.style.position = "absolute";
-            flower.style.top = Math.random() * 100 + "vh";
-            flower.style.left = Math.random() * 100 + "vw";
-            flower.style.fontSize = "20px";
-            document.body.appendChild(flower);
-        }
-        const heart = document.createElement("div");
-        heart.innerHTML = "🤍";
-        heart.style.position = "absolute";
-        heart.style.top = "50%";
-        heart.style.left = "50%";
-        heart.style.transform = "translate(-50%, -50%)";
-        heart.style.fontSize = "50px";
-        document.body.appendChild(heart);
+@keyframes typing {
+    from { width: 0; }
+    to { width: 1.5em; }
+}
 
-        // Ekranın kapanması
-        setTimeout(() => {
-            document.body.style.transition = "opacity 2s";
-            document.body.style.opacity = 0;
-            setTimeout(() => {
-                document.body.innerHTML = "";
-            }, 2000);
-        }, 2000);
-    }
-});
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
