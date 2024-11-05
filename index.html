@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Nida'ya Özel Mesaj</title>
+    <title>Nida'nın Doğum Günü Kutlaması</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="container">
-        <h1 id="welcome-message">İyi ki doğdun Nida <3</h1>
-        <div id="alert-box" class="hidden">
-            <p id="instruction">Çift tıkla <3</p>
+        <div id="greeting">
+            <h1>İyi ki doğdun Nida! 🎉</h1>
+            <div id="alert" class="alert">Çift tıkla <3</div>
         </div>
         <div id="message-container" class="hidden">
-            <div id="message-bubble" class="hidden">
-                <div class="dots">•••</div>
-                <div id="poem-text" class="hidden"></div>
+            <div id="message-balloon" class="balloon">
+                <div class="dots">...</div>
+                <div id="poem-text" class="poem"></div>
             </div>
-            <div id="enter-key" class="hidden">⏎</div>
-            <div id="enter-instruction" class="hidden">Bas hadi :3</div>
         </div>
-        <div id="final-message" class="hidden">TEŞEKKÜRLER!</div>
+        <div id="enter-key" class="hidden">
+            <div class="enter-button">⏎</div>
+            <div class="enter-alert">Bas hadi :3</div>
+        </div>
+        <div id="final-message" class="hidden">
+            <div class="final-text">Beyaz kalp <3</div>
+            <div class="double-click">Çift tıklayın</div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
+
