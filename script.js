@@ -38,7 +38,7 @@ function showTypingDots() {
 Sessiz gözyaşın ve gülümsemen gülüm,
 hıçkırıkların ve kahkahan gülüm.
 
-pırıl pırıl beyaz dişli kahkahanın tekrarı.
+Pırıl pırıl beyaz dişli kahkahanın tekrarı.
 
 Güz sabahı üzüm bağında
 sıra sıra, büklüm büklüm kütüklerin tekrarı
@@ -95,45 +95,36 @@ function sendMessage() {
     sentMessage.style.fontSize = "20px";
     messageBubble.appendChild(sentMessage);
 
-    // Altında çift tıklama isteği
-    const doubleClick = document.createElement("p");
-    doubleClick.innerText = "Çift tıkla";
-    doubleClick.style.fontSize = "20px";
-    messageBubble.appendChild(doubleClick);
-    
-    doubleClick.addEventListener("dblclick", function () {
-        // Kalp ve papatya animasyonu
-        showFinalAnimation();
-    });
+    // Son mesajı göster
+    setTimeout(() => {
+        const finalMessage = document.getElementById("final-message");
+        finalMessage.style.opacity = 1;
+        finalMessage.classList.remove("hidden");
+        createFlowers(); // Çiçekleri oluştur
+    }, 2000); // 2 saniye sonra
 }
 
-// Final animasyonu
-function showFinalAnimation() {
-    const finalMessage = document.getElementById("final-message");
-    finalMessage.classList.remove("hidden");
-    finalMessage.style.opacity = 1;
-
-    const emojis = ["🌼", "💖", "💖", "🌼", "💖", "🌼", "💖"];
-    for (let i = 0; i < 30; i++) {
+// Papatyaları oluştur
+function createFlowers() {
+    const emojis = ["🌼", "🔥", "🤍"];
+    for (let i = 0; i < 50; i++) { // 50 çiçek oluştur
         setTimeout(() => {
-            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-            const span = document.createElement("span");
-            span.innerText = emoji;
-            span.style.position = "absolute";
-            span.style.left = Math.random() * 100 + "vw";
-            span.style.top = Math.random() * 100 + "vh";
-            span.style.fontSize = "30px";
-            span.style.transition = "transform 2s, opacity 2s";
-            span.style.transform = "translateY(-50px)"; // Yukarı doğru kaydır
-            document.body.appendChild(span);
+            const flower = document.createElement("span");
+            flower.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            flower.classList.add("flower", "animate");
+            flower.style.left = Math.random() * 100 + "vw"; // Ekranda rastgele konum
+            flower.style.top = Math.random() * 100 + "vh"; // Ekranda rastgele konum
+            document.body.appendChild(flower);
+            
+            // Çiçeğin kaybolması için zaman ayarla
             setTimeout(() => {
-                span.style.opacity = 0; // Yavaşça kaybol
-            }, 2000); // 2 saniye sonra kaybol
-        }, i * 100); // Her 0.1 saniyede bir emoji ekle
+                flower.remove(); // Çiçeği kaldır
+            }, 2000); // 2 saniye sonra
+        }, i * 100); // Her 0.1 saniyede bir çiçek ekle
     }
-
-    // Sonunda ekranı kapat
+    
+    // Son olarak ekranı kapat
     setTimeout(() => {
         window.close(); // Tarayıcı penceresini kapat
-    }, 5000); // 5 saniye sonra kapat
+    }, 8000); // 8 saniye sonra kapat
 }
