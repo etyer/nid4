@@ -12,7 +12,7 @@ body {
 
 #container {
     text-align: center;
-    position: relative; /* Kalpler için konum ayarı */
+    position: relative; /* Diğer öğeler için konum ayarı */
 }
 
 h1 {
@@ -20,16 +20,58 @@ h1 {
     transition: opacity 1s ease-in-out;
 }
 
-p {
+#alert-box {
+    background-color: rgba(128, 128, 128, 0.7); /* Gri arka plan */
+    border-radius: 50px; /* Elips çerçeve */
+    padding: 10px 20px; /* İçerik boşluğu */
+    margin: 20px 0; /* Üst ve alt boşluk */
+}
+
+#instruction {
     font-size: 20px;
     transition: opacity 1s ease-in-out;
 }
 
-.heart {
-    position: absolute;
+#message-bubble {
+    background: linear-gradient(135deg, #d1c4e9, #f8bbd0); /* Mor ve pembe geçişli arka plan */
+    border-radius: 20px;
+    padding: 15px;
+    width: fit-content;
+    margin: 20px auto;
+    position: relative;
+    display: none; /* Başlangıçta gizli */
+}
+
+.dots {
+    font-size: 30px;
+    animation: blink 1s step-start infinite; /* Üç nokta animasyonu */
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+#poem-text {
+    margin-top: 10px;
+    font-size: 18px;
+    white-space: pre-wrap; /* Şiirin biçimini korumak için */
+}
+
+#enter-key {
+    font-size: 100px;
+    margin-top: 20px;
     color: white;
-    font-size: 50px;
-    opacity: 0;
+    cursor: pointer;
+    display: none; /* Başlangıçta gizli */
+    transform: scale(1); /* İlk boyut */
+    transition: transform 0.2s ease; /* Geçiş animasyonu */
+}
+
+#enter-instruction {
+    margin-top: 10px;
+    font-size: 30px;
+    opacity: 0; /* Başlangıçta gizli */
     transition: opacity 0.5s ease-in-out;
 }
 
@@ -37,24 +79,9 @@ p {
     display: none; /* Gizli öğeleri gizle */
 }
 
-#poem-container {
-    margin-top: 20px;
-    font-size: 18px;
-    white-space: pre-wrap; /* Şiirin biçimini korumak için */
-}
-
-#enter-button {
-    margin-top: 20px;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
 #final-message {
     margin-top: 20px;
     font-size: 30px;
-    opacity: 0;
+    opacity: 0; /* Başlangıçta gizli */
     transition: opacity 0.5s ease-in-out;
 }
