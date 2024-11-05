@@ -1,5 +1,5 @@
 body {
-    background-color: black; /* Karanlık mod arka plan */
+    background-color: black; /* Karanlık arka plan */
     color: white; /* Yazı rengi beyaz */
     display: flex;
     justify-content: center;
@@ -7,10 +7,12 @@ body {
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
+    overflow: hidden; /* Taşan içeriği gizle */
 }
 
 #container {
     text-align: center;
+    position: relative; /* Kalpler için konum ayarı */
 }
 
 h1 {
@@ -18,10 +20,41 @@ h1 {
     transition: opacity 1s ease-in-out;
 }
 
+p {
+    font-size: 20px;
+    transition: opacity 1s ease-in-out;
+}
+
 .heart {
     position: absolute;
     color: white;
     font-size: 50px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+    display: none; /* Gizli öğeleri gizle */
+}
+
+#poem-container {
+    margin-top: 20px;
+    font-size: 18px;
+    white-space: pre-wrap; /* Şiirin biçimini korumak için */
+}
+
+#enter-button {
+    margin-top: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#final-message {
+    margin-top: 20px;
+    font-size: 30px;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
