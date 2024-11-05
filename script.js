@@ -1,39 +1,22 @@
-function showHearts() {
-    document.getElementById('firstMessage').classList.add('hidden');
-    document.getElementById('heartsContainer').classList.remove('hidden');
-    startHeartAnimation();
+document.addEventListener("dblclick", function() {
+    // Kalp yaratma
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "<3"; // Kalp simgesi
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.top = Math.random() * window.innerHeight + 'px';
+    document.body.appendChild(heart);
+
+    // Kalbin görünürlüğü
     setTimeout(() => {
-        document.getElementById('heartsContainer').classList.add('hidden');
-        document.getElementById('shakeMessage').classList.remove('hidden');
-    }, 3000); // 3 saniye sonra ekrana geçiş yapar
-}
+        heart.style.opacity = 1;
+    }, 100);
 
-function startHeartAnimation() {
-    for (let i = 0; i < 50; i++) {
-        createHeart();
-    }
-}
-
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-    heart.innerHTML = '❤️';
-    document.getElementById('heartsContainer').appendChild(heart);
-
+    // Kalbin kaybolması
     setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
-
-function showScratchMessage() {
-    document.getElementById('birthdayMessage').classList.add('hidden');
-    document.getElementById('scratchMessage').classList.remove('hidden');
-    // Burada kazıma animasyonunu ekleyin
-}
-
-document.getElementById('finalMessage').addEventListener('dblclick', () => {
-    document.getElementById('finalMessage').classList.add('hidden');
-    alert("Mesaj sona erdi, iyi ki doğdun Nida!");
+        heart.style.opacity = 0;
+        setTimeout(() => {
+            heart.remove();
+        }, 500);
+    }, 1500);
 });
