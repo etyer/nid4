@@ -1,40 +1,35 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // İlk çift tıklama ile uyarıyı göster
-    document.getElementById("alert-box").classList.remove("hidden");
-    document.getElementById("instruction").style.opacity = 1;
+ document.addEventListener("DOMContentLoaded", () => {
+    const alertMessage = document.getElementById("alert");
+    const messageContainer = document.getElementById("message-container");
+    const enterKey = document.getElementById("enter-key");
+    const finalMessage = document.getElementById("final-message");
+    const poemText = document.getElementById("poem-text");
 
-    // Çift tıklama olayını dinle
-    document.addEventListener("dblclick", function () {
-        // Uyarı mesajını gizle
-        document.getElementById("alert-box").classList.add("hidden");
-        
-        // Mesaj balonunu göster
-        document.getElementById("message-container").classList.remove("hidden");
-        document.getElementById("message-bubble").style.display = "block";
-
-        // Mesaj balonunu açma animasyonu
-        setTimeout(() => {
-            document.getElementById("message-bubble").classList.remove("hidden");
-            showTypingDots(); // Üç noktayı göster
-        }, 500); // 0.5 saniye bekle
+    // İlk uyarı için çift tıklama
+    alertMessage.addEventListener("dblclick", () => {
+        alertMessage.classList.add("hidden");
+        messageContainer.classList.remove("hidden");
+        showTypingDots();
     });
-});
 
-// Üç noktayı göster ve şiiri yaz
-function showTypingDots() {
-    const dots = document.querySelector(".dots");
-    const messageBubble = document.getElementById("message-bubble");
+    // Şiiri yazan fonksiyon
+    function showTypingDots() {
+        let dots = document.querySelector(".dots");
+        let interval = setInterval(() => {
+            dots.innerText += ".";
+            if (dots.innerText.length > 3) {
+                dots.innerText = "";
+            }
+        }, 500);
 
-    // Üç nokta görünür olacak
-    setTimeout(() => {
-        dots.style.opacity = 1;
         setTimeout(() => {
-            dots.style.opacity = 0; // Üç noktayı gizle
-        }, 1000); // 1 saniye görünür
-    }, 1000); // 1 saniye bekle
+            clearInterval(interval);
+            displayPoem();
+        }, 3000);
+    }
 
-    // Şiiri yazma işlemi
-    const poem = `
+    function displayPoem() {
+        const poem = `
 Sessiz gözyaşın ve gülümsemen gülüm,
 hıçkırıkların ve kahkahan gülüm.
 
@@ -47,84 +42,69 @@ salkımlarda tanelerin
 tanelerde aydınlığın,
 aydınlıkta yüreğimin.`;
 
-    // Mesaj balonunun içinde şiiri yaz
-    let i = 0;
-    let interval = setInterval(() => {
-        if (i < poem.length) {
-            document.getElementById("poem-text").innerText += poem[i++];
-        } else {
-            clearInterval(interval);
-            showEnterKey(); // Enter tuşunu göster
-        }
-    }, 100); // 0.1 saniye aralıkla yaz
-}
-
-// Enter tuşunu göster
-function showEnterKey() {
-    const enterKey = document.getElementById("enter-key");
-    enterKey.style.display = "block";
-    enterKey.classList.remove("hidden");
-
-    // Ekranın ortasında göster
-    setTimeout(() => {
-        enterKey.style.opacity = 1;
-    }, 500); // 0.5 saniye bekle
-
-    // Basma talimatını göster
-    document.getElementById("enter-instruction").classList.remove("hidden");
-    setTimeout(() => {
-        document.getElementById("enter-instruction").style.opacity = 1;
-    }, 1000); // 1 saniye bekle
-
-    // Enter tuşuna basma olayı
-    enterKey.addEventListener("click", function () {
-        this.style.transform = "scale(0.9)"; // Tuş basma animasyonu
-        setTimeout(() => {
-            this.style.transform = "scale(1)"; // Tuşu geri büyüt
-        }, 200); // 0.2 saniye bekle
-
-        sendMessage(); // Mesajı gönder
-    });
-}
-
-// Mesaj gönderilmiş gibi göster
-function sendMessage() {
-    const messageBubble = document.getElementById("message-bubble");
-    const sentMessage = document.createElement("p");
-    sentMessage.innerText = "Mesaj gönderildi.";
-    sentMessage.style.fontSize = "20px";
-    messageBubble.appendChild(sentMessage);
-
-    // Son mesajı göster
-    setTimeout(() => {
-        const finalMessage = document.getElementById("final-message");
-        finalMessage.style.opacity = 1;
-        finalMessage.classList.remove("hidden");
-        createFlowers(); // Çiçekleri oluştur
-    }, 2000); // 2 saniye sonra
-}
-
-// Papatyaları oluştur
-function createFlowers() {
-    const emojis = ["🌼", "🔥", "🤍"];
-    for (let i = 0; i < 50; i++) { // 50 çiçek oluştur
-        setTimeout(() => {
-            const flower = document.createElement("span");
-            flower.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            flower.classList.add("flower", "animate");
-            flower.style.left = Math.random() * 100 + "vw"; // Ekranda rastgele konum
-            flower.style.top = Math.random() * 100 + "vh"; // Ekranda rastgele konum
-            document.body.appendChild(flower);
-            
-            // Çiçeğin kaybolması için zaman ayarla
-            setTimeout(() => {
-                flower.remove(); // Çiçeği kaldır
-            }, 2000); // 2 saniye sonra
-        }, i * 100); // Her 0.1 saniyede bir çiçek ekle
+        let i = 0;
+        let interval = setInterval(() => {
+            if (i < poem.length) {
+                poemText.innerText += poem[i++];
+            } else {
+                clearInterval(interval);
+                showEnterKey();
+            }
+        }, 100); // 0.1 saniye aralıkla yaz
     }
-    
-    // Son olarak ekranı kapat
-    setTimeout(() => {
-        window.close(); // Tarayıcı penceresini kapat
-    }, 8000); // 8 saniye sonra kapat
-}
+
+    function showEnterKey() {
+        enterKey.classList.remove("hidden");
+        enterKey.addEventListener("click", () => {
+            enterKey.classList.add("hidden");
+            sendMessage();
+        });
+    }
+
+    function sendMessage() {
+        const finalText = document.createElement("div");
+        finalText.className = "final-text";
+        finalText.innerText = "Beyaz kalp <3";
+        finalMessage.appendChild(finalText);
+        finalMessage.classList.remove("hidden");
+
+        const doubleClickMessage = document.createElement("div");
+        doubleClickMessage.className = "double-click";
+        doubleClickMessage.innerText = "Çift tıkla!!";
+        finalMessage.appendChild(doubleClickMessage);
+
+        doubleClickMessage.addEventListener("dblclick", () => {
+            displayFlowers();
+        });
+    }
+
+    function displayFlowers() {
+        // Ekranı papatyalar ve kalpler ile doldur
+        for (let i = 0; i < 50; i++) {
+            const flower = document.createElement("div");
+            flower.innerHTML = "🌼";
+            flower.style.position = "absolute";
+            flower.style.top = Math.random() * 100 + "vh";
+            flower.style.left = Math.random() * 100 + "vw";
+            flower.style.fontSize = "20px";
+            document.body.appendChild(flower);
+        }
+        const heart = document.createElement("div");
+        heart.innerHTML = "🤍";
+        heart.style.position = "absolute";
+        heart.style.top = "50%";
+        heart.style.left = "50%";
+        heart.style.transform = "translate(-50%, -50%)";
+        heart.style.fontSize = "50px";
+        document.body.appendChild(heart);
+
+        // Ekranın kapanması
+        setTimeout(() => {
+            document.body.style.transition = "opacity 2s";
+            document.body.style.opacity = 0;
+            setTimeout(() => {
+                document.body.innerHTML = "";
+            }, 2000);
+        }, 2000);
+    }
+});
