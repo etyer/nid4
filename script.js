@@ -17,4 +17,8 @@ function createHeart(x, y) {
     heart.style.left = `${x + randomX}px`;
     heart.style.top = `${y + randomY}px`;
 
-    setTimeout(() => { heart
+    // Kalbin ekrandan silinmesini sağla (2 saniye sonra)
+    setTimeout(() => {
+        heart.remove();
+    }, 2000);
+}
