@@ -3,6 +3,7 @@ body {
     color: white;
     text-align: center;
     font-family: Arial, sans-serif;
+    overflow: hidden; /* Sayfanın taşmasını engelle */
 }
 
 h1 {
