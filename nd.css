@@ -1,0 +1,57 @@
+/* Font ekleme */
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+
+/* Genel Body stil ayarları */
+/* Genel Body stil ayarları */
+body {
+    background-color: #1d0633; /* Koyu mor arka plan */
+    color: rgb(193, 168, 212);
+    text-align: center;
+    font-family: "Delicious Handrawn", serif; /* Font */
+    overflow: hidden; /* Sayfanın taşmasını engelle */
+}
+
+/* Başlık stili */
+h1 {
+    font-size: 3em;
+    cursor: pointer; /* Tıklanabilir olduğunu göstermek için */
+    font-family: "Delicious Handrawn", serif; /* Başlık fontu */
+}
+
+/* Animasyonlu öğeler için gizleme */
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Yavaşça görünür hale gelme animasyonu */
+@keyframes fadeIn {
+    0% { opacity: 0; visibility: hidden; }
+    100% { opacity: 1; visibility: visible; }
+}
+
+/* Yavaşça kaybolma animasyonu */
+@keyframes fadeOut {
+    0% { opacity: 1; visibility: visible; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+/* Başlık ve metinlerin animasyonu */
+#newTitle, #newParagraph, #newButton {
+    animation: fadeIn 3s ease-in-out forwards; /* Yavaşça görünme */
+}
+
+/* Kalp animasyonu */
+.heart {
+    position: absolute;
+    color: #ff66b2;
+    font-size: 2em;
+    animation: floatUp 2s ease-out forwards;
+}
+
+/* Kalp yukarı doğru hareket ederken küçülme ve şeffaflaşma animasyonu */
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+}
+
