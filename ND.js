@@ -1,4 +1,4 @@
-
+// Başlangıçta Sevgilerle Dila yazısını göster
 window.onload = function() {
     setTimeout(function() {
         document.getElementById("title").classList.remove("hidden");
@@ -51,6 +51,4 @@ function createHeart(x, y) {
     heart.style.top = `${y + randomY}px`;
 
     setTimeout(() => { heart.remove(); }, 2000); // Kalp kaybolması için süre
-}
-
 }
